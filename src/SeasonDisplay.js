@@ -1,8 +1,16 @@
-import React from 'react'
+import React from 'react';
 
 
-const SeasonDisplay = (props) => {
-    
+class SeasonDisplay extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {};
+    }
+
+    render() {
+        return 
+    }
 }
 
 export default SeasonDisplay;
