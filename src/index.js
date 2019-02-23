@@ -8,9 +8,10 @@ import faker from 'faker'
 class App extends React.Component {
     constructor(props) {
         super(props);
-
         this.state = { lat: null, errorMessage: '' };
+    }
 
+    componentDidMount() {
         window.navigator.geolocation.getCurrentPosition(
             (position) => {
                 this.setState({ lat: position.coords.latitude });
@@ -19,8 +20,6 @@ class App extends React.Component {
                 this.setState({ errorMessage: error.message });
             }
         );
-
-
     }
 
     render() {
@@ -31,16 +30,7 @@ class App extends React.Component {
         if(!this.state.errorMessage && this.state.lat) {
             return (
                 <div className='ui container comments'>
-                    latitude: { this.state.lat }
-                    <ApprovalCard>
-                        <Comment author='Andrew' timeAgo='Yesterday at 5:00PM' text='Cool story bro!' avatar={faker.image.avatar()} />
-                    </ApprovalCard>
-                    <ApprovalCard>
-                        <Comment author='Bob' timeAgo='Yesterday at 5:00PM' text='I am hungry' avatar={faker.image.avatar()} />
-                    </ApprovalCard>
-                    <ApprovalCard>
-                        <Comment author='troll master' timeAgo='Yesterday at 5:00PM' text='HAHAHAHA' avatar={faker.image.avatar()} />
-                    </ApprovalCard>
+                    <SeasonDisplay lat={this.state.lat} />
                 </div>
             )
         }
